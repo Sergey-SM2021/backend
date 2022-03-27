@@ -1,5 +1,5 @@
 import express from "express"
-import logic from "./logic.js"
+import logic from "./controller.js"
 
 const server = express.Router()
 

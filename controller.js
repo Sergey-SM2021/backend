@@ -1,4 +1,5 @@
-import { pool } from './index.js'
+import { pool } from './db.js'
+import Service from './Service.js'
 
 class logic {
     getFreelancers = async (req, res) => {
@@ -13,7 +14,6 @@ class logic {
     }
 
     getFreelancerById = async (req, res) => {
-        console.log("redirect")
         const id = req.params.id
         const freelancer = await (await pool.query(`select * from freelancers where id = ${id}`)).rows[0]
         const review = await (await pool.query(`select * from review where freelancer = ${id}`)).rows
@@ -61,7 +61,7 @@ class logic {
             const { mail, password } = req.query
             const id = await pool.query(`select id from freelancers where mail = '${mail}' and password = '${password}'`)
             const idDirectly = await id.rows[0].id
-            // res.redirect(`freelancer/${idDirectly}`)
+            res.redirect(`freelancer/${idDirectly}`)
         } catch (error) {
             res.status(500).send("Error")
         }
