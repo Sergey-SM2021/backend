@@ -1,7 +1,6 @@
-import { pool } from './db.js'
-import Service from './Service.js'
+import { pool } from '../db.js'
 
-class logic {
+class Freelancer {
     getFreelancers = async (req, res) => {
         const freelancers = await pool.query(`select * from freelancers`)
         const newFreelancers = await Promise.all(freelancers.rows.map(async freelancer => {
@@ -35,27 +34,6 @@ class logic {
         }
     }
 
-    postClient = async (req, res) => {
-        try {
-            const { mail, password } = req.body
-            const client = await pool.query(`insert into clients (mail, password) values('${mail}','${password}')`)
-            res.send('Клиент был создан')
-        } catch (error) {
-            console.log(error)
-            res.status(500).send("Error")
-        }
-    }
-
-    getClient = async (req, res) => {
-        try {
-            const { mail, password } = req.query
-            const client = await pool.query(`select * from clients where mail = '${mail}' and password = '${password}'`)
-            res.send(client.rows[0])
-        } catch (error) {
-            res.status(500).send("Error")
-        }
-    }
-
     getFreelancer = async (req, res) => {
         try {
             const { mail, password } = req.query
@@ -68,4 +46,4 @@ class logic {
     }
 }
 
-export default new logic()
+export default new Freelancer()
