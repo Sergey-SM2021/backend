@@ -1,6 +1,6 @@
 import { pool } from "../db.js"
 
-class FreelancerService {
+class Freelancers {
     getFreelancers = async () => {
         const freelancers = await pool.query(`select * from freelancers`)
         const newFreelancers = await Promise.all(freelancers.rows.map(async freelancer => {
@@ -13,4 +13,4 @@ class FreelancerService {
     }
 }
 
-export default new FreelancerService()
+export const FreelancersService = new Freelancers()

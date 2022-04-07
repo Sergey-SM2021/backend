@@ -36,4 +36,4 @@ class Freelancer{
     }
 }
 
-export default new Freelancer()
+export const FreelancerService = new Freelancer()

@@ -1,6 +1,6 @@
 import { pool } from '../db.js'
 
-class logic {
+class Client {
     postClient = async (req, res) => {
         try {
             const { mail, password } = req.body
@@ -23,4 +23,4 @@ class logic {
     }
 }
 
-export default new logic()
+export const ClientController =  new Client()

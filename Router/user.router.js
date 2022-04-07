@@ -1,6 +1,6 @@
 import express from "express"
-import userController from "../Controllers/user.js"
+import { UserController } from "../Controllers/User.controller.js"
 
 export const user = express.Router()
 
-user.get('', userController.findUser)
+user.get('', UserController.findUser)

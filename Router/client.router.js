@@ -1,8 +1,9 @@
 import express from "express"
-import logic from "../Controllers/client.js"
+
+import { ClientController } from "../Controllers/client.controller.js"
 
 export const client = express.Router()
 
-client.post("", logic.postClient)
+client.post("", ClientController.postClient)
 
-client.get("", logic.getClient)
+client.get("", ClientController.getClient)

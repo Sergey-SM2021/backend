@@ -1,6 +1,8 @@
 import { Router } from 'express'
-import logic from '../Controllers/Freelancers.js'
+import {FreelancersController} from '../Controllers/Freelancers.controller.js'
 
 export const freelancers = Router()
 
-freelancers.get("", logic.getFreelancers)
+freelancers.get("", FreelancersController.getFreelancers)
+
+freelancers.get("/find", FreelancersController.getFreelancersByName)

@@ -15,4 +15,4 @@ class User {
     }
 }
 
-export default new User()
+export const UserController = new User()

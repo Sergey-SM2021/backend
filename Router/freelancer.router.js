@@ -1,12 +1,10 @@
 import express from "express"
-import logic from "../Controllers/Freelancer.js"
+import { FreelancerController } from "../Controllers/Freelancer.controller.js"
 
 export const freelancer = express.Router()
 
-freelancer.get("/find", logic.findFreelancers)
+freelancer.get("/:id", FreelancerController.getFreelancerById)
 
-freelancer.get("/:id", logic.getFreelancerById)
+freelancer.post("", FreelancerController.postFreelancer)
 
-freelancer.post("", logic.postFreelancer)
-
-freelancer.get("", logic.getFreelancer)
+freelancer.get("", FreelancerController.getFreelancer)
