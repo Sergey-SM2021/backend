@@ -1,16 +1,18 @@
 import express from "express"
 import cors from 'cors'
 import { json } from "express"
-import Client from "./Router/client.js"
-import Freelancer from "./Router/freelancer.js"
-import User from "./Router/user.js"
+import { client } from "./Router/client.router.js"
+import {freelancer} from "./Router/freelancer.router.js"
+import {user} from "./Router/user.router.js"
+import {freelancers} from './Router/freelancers.router.js'
 
 const server = express()
 server.use(cors())
 server.use(json())
-server.use('/user',User)
-server.use('/freelancer',Freelancer)
-server.use('/client',Client)
+server.use('/freelancers', freelancers)
+server.use('/user', user)
+server.use('/freelancer', freelancer)
+server.use('/client', client)
 
 server.listen(8900)
 
