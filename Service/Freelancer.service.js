@@ -1,14 +1,6 @@
 import {pool} from '../db.js'
 
 class Freelancer{
-    async findFreelancerByName(name) {
-        try {
-            const freelancer = await (await pool.query(`select * from freelancers where name = '${name}'`)).rows
-            return freelancer
-        } catch (error) {
-            throw "Freelancer не найден"
-        }
-    }
     getFreelancerById = async (id) => {
         const freelancer = await (await pool.query(`select * from freelancers where id = ${id}`)).rows[0]
         const review = await (await pool.query(`select * from review where freelancer = ${id}`)).rows

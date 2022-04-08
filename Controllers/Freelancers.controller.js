@@ -8,7 +8,7 @@ class Freelancers {
     getFreelancersByName = async (req, res) => {
         try {
             const { name } = req.query
-            const freelancers = await FreelancersService.getFreelancers(name)
+            const freelancers = await FreelancersService.getSortedFreelancersByName(name)
             res.send(freelancers)
         } catch (error) {
             res.status(500).send("Error")
