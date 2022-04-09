@@ -5,6 +5,8 @@ export const freelancer = express.Router()
 
 freelancer.get("/:id", FreelancerController.getFreelancerById)
 
+freelancer.put("/:id", FreelancerController.updateFreelancer)
+
 freelancer.post("", FreelancerController.postFreelancer)
 
 freelancer.get("", FreelancerController.getFreelancer)

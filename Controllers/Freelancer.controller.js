@@ -27,6 +27,18 @@ class Freelancer {
             res.status(500).send("Error")
         }
     }
+
+    updateFreelancer = async (req, res) => {
+        try {
+            const { id } = req.params
+            const freelancer = req.body
+            FreelancerService.updateFreelancer(id,freelancer)
+            res.send("")
+        } catch (error) {
+            console.log(error)
+            res.status(500).send(error)
+        }
+    }
 }
 
 export const FreelancerController = new Freelancer()
