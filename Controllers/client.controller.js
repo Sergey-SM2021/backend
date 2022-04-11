@@ -1,5 +1,6 @@
 import { pool } from '../db.js'
 
+// Это заказчик
 class Client {
     postClient = async (req, res) => {
         try {
