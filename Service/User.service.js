@@ -1,22 +1,22 @@
 import { pool } from '../db.js'
 
 class User {
-    createFreelancer = async (mail, password) => {
-        return "createFreelancer"
+    createFreelancer = async (mail, password, id) => {
+        await pool.query(`insert into freelancers(mail,password,id) values ('${mail}','${password}',${id})`)
     }
 
-    createClient = async (mail, password) => {
-        return "createClient"
+    createClient = async (mail, password, id) => {
+        await pool.query(`insert into clients(mail,password,id) values ('${mail}','${password}',${id})`)
     }
 
     createUser = async (mail, password, type) => {
+        await pool.query(`insert into users(mail,password,type) values ('${mail}','${password}','${type}')`)
+        const id = await (await pool.query(`select id from users order by id desc limit 1`)).rows[0].id
         switch (type) {
             case "freelancer":
-                const freelancer = await this.createFreelancer(mail, password)
-                return freelancer
+                await this.createFreelancer(mail, password, id)
             case "client":
-                const client = await this.createClient(mail, password)
-                return client
+                await this.createClient(mail, password, id)
         }
     }
 }
