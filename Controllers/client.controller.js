@@ -15,8 +15,8 @@ class Client {
 
     getClient = async (req, res) => {
         try {
-            const { mail, password } = req.query
-            const client = await pool.query(`select * from clients where mail = '${mail}' and password = '${password}'`)
+            const id = req.params.id
+            const client = await pool.query(`select * from clients where id = ${ id }`)
             res.send(client.rows[0])
         } catch (error) {
             res.status(500).send("Error")
@@ -24,4 +24,4 @@ class Client {
     }
 }
 
-export const ClientController =  new Client()
+export const ClientController = new Client()

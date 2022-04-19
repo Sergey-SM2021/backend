@@ -6,4 +6,4 @@ export const client = express.Router()
 
 client.post("", ClientController.postClient)
 
-client.get("", ClientController.getClient)
+client.get("/:id", ClientController.getClient)
