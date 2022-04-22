@@ -5,4 +5,4 @@ export const OrderRouter = Router()
 
 OrderRouter.post('/create', OrderController.postOrder)
 
-OrderRouter.get('/getById/:id', OrderController.getById)
+OrderRouter.get('/:id', OrderController.getOrder)

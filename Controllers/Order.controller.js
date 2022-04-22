@@ -11,7 +11,7 @@ class Order {
         }
     }
 
-    getById = async (req, res) => {
+    getOrder = async (req, res) => {
         const { id } = req.params
         const ReceivedOrder = await OrderService.getOrderById(id)
         res.send(ReceivedOrder)
