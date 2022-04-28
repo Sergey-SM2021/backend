@@ -9,14 +9,13 @@ class Freelancer {
         const newFreelancer = { ...freelancer, review, stack, workhistory }
         return await newFreelancer
     }
-    
+
     postFreelancer = async (mail, password) => {
         try {
             const freelancer = await pool.query(`insert into freelancers (mail, password) values('${mail}','${password}')`)
             return await freelancer
         } catch (error) {
-            console.log(error)
-            res.status(500).send("Error")
+            throw error
         }
     }
 
@@ -25,7 +24,7 @@ class Freelancer {
             const id = await pool.query(`select id from freelancers where mail = '${mail}' and password = '${password}'`)
             return (await id.rows[0].id)
         } catch (error) {
-            res.status(500).send("Error")
+            throw error
         }
     }
 
@@ -39,13 +38,14 @@ class Freelancer {
                 await pool.query(`delete from workhistory where freelancer = ${id}`)
                 await pool.query(`insert into workhistory (name,price,freelancer) values('${work.name}',${work.price},${id}) `)
             })
-            const updatedFreelancer = await pool.query(`update freelancers set name = '${freelancer.name}',
-            lastname = '${freelancer.lastname}',
-            specialization = '${freelancer.specialization}', description = '${freelancer.description}',
-            expiriens = '${freelancer.expiriens}', price = '${freelancer.price}', paymentmethod = '${freelancer.paymentmethod}'
-            where id = ${id}`)
+            await pool.query(`update freelancers set name = '${freelancer.name}',
+                lastname = '${freelancer.lastname}',
+                specialization = '${freelancer.specialization}', description = '${freelancer.description}',
+                expiriens = '${freelancer.expiriens}', price = ${freelancer.price}, paymentmethod = '${freelancer.paymentmethod}'
+                where id = ${id}`)
         } catch (error) {
             console.log(error)
+            throw error
         }
     }
 }

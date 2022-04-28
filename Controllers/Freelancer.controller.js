@@ -29,10 +29,11 @@ class Freelancer {
     }
 
     updateFreelancer = async (req, res) => {
+        const { id } = req.params
+        const freelancer = req.body
+        console.log(freelancer)
         try {
-            const { id } = req.params
-            const freelancer = req.body
-            FreelancerService.updateFreelancer(id,freelancer)
+            await FreelancerService.updateFreelancer(id, freelancer)
             res.send("")
         } catch (error) {
             console.log(error)
