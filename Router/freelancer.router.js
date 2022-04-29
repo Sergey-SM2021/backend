@@ -10,3 +10,5 @@ freelancer.put("/:id", FreelancerController.updateFreelancer)
 freelancer.post("", FreelancerController.postFreelancer)
 
 freelancer.get("", FreelancerController.getFreelancer)
+
+freelancer.post("/feedback", FreelancerController.sendFeedback)

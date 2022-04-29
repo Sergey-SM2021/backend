@@ -1,3 +1,4 @@
+import { pool } from '../db.js'
 import { FreelancerService } from '../Service/Freelancer.service.js'
 
 class Freelancer {
@@ -38,6 +39,16 @@ class Freelancer {
         } catch (error) {
             console.log(error)
             res.status(500).send(error)
+        }
+    }
+
+    sendFeedback = async (req, res) => {
+        const { feedback, freelancerId, orderId } = req.body
+        try {
+            pool.query(`insert into feedbacks(message,"freelancerId","orderId") values('${feedback}',${freelancerId},${orderId})`)
+            res.send("Feedback был создан")
+        } catch (error) {
+            res.status(500).send("Feedback был создан")
         }
     }
 }
