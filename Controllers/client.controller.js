@@ -15,11 +15,9 @@ class Client {
 
     getClient = async (req, res) => {
         try {
-            console.log("Backend")
             const id = req.params.id
             const client = await (await pool.query(`select * from clients where id = ${id}`)).rows[0]
-            client.orders = await (await pool.query(`select * from orders where "clientId" = ${id} limit 3`)).rows
-            console.log(client)
+            client.orders = await (await pool.query(`select * from orders where "clientId" = ${id} order by orders.id desc limit 3`)).rows
             res.send(client)
         } catch (error) {
             res.status(500).send("err")
@@ -54,7 +52,7 @@ class Client {
         try {
             const { userId, count } = req.params
             console.log(userId, count)
-            let orders = await (await pool.query(`select * from orders where "clientId" = ${userId} limit ${count}`)).rows
+            let orders = await (await pool.query(`select * from orders where "clientId" = ${userId} order by id desC limit ${count}`)).rows
             console.log(orders.length)
             res.send(orders)
         } catch (error) {
