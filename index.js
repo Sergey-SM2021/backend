@@ -19,6 +19,9 @@ server.use('/freelancer', freelancer)
 server.use('/client', client)
 server.use('/orders', ordersRouter)
 server.use('/order', OrderRouter)
+server.get("",(req,res)=>{
+    res.send("test")
+})
 
 server.listen(8900)
 
