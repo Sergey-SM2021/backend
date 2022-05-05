@@ -20,6 +20,6 @@ server.use('/client', client)
 server.use('/orders', ordersRouter)
 server.use('/order', OrderRouter)
 
-server.listen(8900)
+server.listen(80)
 
 // #TODO: work history mast return skills
