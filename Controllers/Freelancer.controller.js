@@ -14,7 +14,6 @@ class Freelancer {
             FreelancerService.postFreelancer(mail, password)
             res.send('Freelancer был создан')
         } catch (error) {
-            console.log(error)
             res.status(500).send("Error")
         }
     }
@@ -32,12 +31,10 @@ class Freelancer {
     updateFreelancer = async (req, res) => {
         const { id } = req.params
         const freelancer = req.body
-        console.log(freelancer)
         try {
             await FreelancerService.updateFreelancer(id, freelancer)
             res.send("")
         } catch (error) {
-            console.log(error)
             res.status(500).send(error)
         }
     }

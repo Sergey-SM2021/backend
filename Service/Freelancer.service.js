@@ -44,7 +44,6 @@ class Freelancer {
                 expiriens = '${freelancer.expiriens}', price = ${freelancer.price}, paymentmethod = '${freelancer.paymentmethod}'
                 where id = ${id}`)
         } catch (error) {
-            console.log(error)
             throw error
         }
     }

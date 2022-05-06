@@ -8,7 +8,6 @@ class Client {
             const client = await pool.query(`insert into clients (mail, password) values('${mail}','${password}')`)
             res.send('Клиент был создан')
         } catch (error) {
-            console.log(error)
             res.status(500).send("Error")
         }
     }
@@ -26,24 +25,21 @@ class Client {
 
     putClient = async (req, res) => {
         try {
-            console.log("Этот эндпоинт работает")
             const { id, name, phone } = req.body
             await pool.query(`UPDATE clients SET "phone" = '${phone}' where id = ${id}`)
             await pool.query(`UPDATE clients SET "name" = '${name}' where id = ${id}`)
             res.send("newClient")
         } catch (error) {
-            console.log(error)
+            res.status(500).send("err")
         }
     }
 
     createOrder = async (req, res) => {
         try {
-            console.log("res")
             const { description, price, skills, sphereOfActivity, title, feedbacks, clientId, views } = req.body
             await pool.query(`insert into orders ("title","price","description","sphereOfActivity","views","clientId") values ('${title}','${price}','${description}','${sphereOfActivity}','${views}','${clientId}')`)
             res.send("responce")
         } catch (error) {
-            console.log(JSON.stringify(error))
             res.status(500).send("Не удалось создать пользовотеля")
         }
     }
@@ -51,9 +47,7 @@ class Client {
     getOrders = async (req, res) => {
         try {
             const { userId, count } = req.params
-            console.log(userId, count)
             let orders = await (await pool.query(`select * from orders where "clientId" = ${userId} order by id desC limit ${count}`)).rows
-            console.log(orders.length)
             res.send(orders)
         } catch (error) {
             res.status(500).send("err")
@@ -67,7 +61,7 @@ class Client {
             order.feedbacks = []
             res.send(order)
         } catch (error) {
-
+            res.status(500).send("err")
         }
     }
 }

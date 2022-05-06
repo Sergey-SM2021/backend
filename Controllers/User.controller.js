@@ -12,7 +12,6 @@ class User {
             }
             res.send(USER)
         } catch (error) {
-            console.log(error)
         }
     }
     createUser = async (req, res) => {
