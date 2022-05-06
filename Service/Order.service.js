@@ -2,11 +2,16 @@ import { pool } from '../db.js'
 
 class Order {
     createOrder = async (order) => {
-        const id = await (await pool.query(`insert into orders("title","price","description","sphereOfActivity","clientId") 
-        values('${order.title}',${order.price},'${order.description}','${order.sphereOfActivity}',${order.clientId}) RETURNING id`)).rows[0].id
-        order.skills.forEach(async skill => {
-            await pool.query(`insert into skills("name","orderId") values('${skill.name}',${id})`)
-        })
+        try {
+            console.log("order");
+            const id = await (await pool.query(`insert into orders("title","price","description","sphereOfActivity","clientId") 
+            values('${order.title}',${order.price},'${order.description}','${order.sphereOfActivity}',${order.clientId}) RETURNING id`)).rows[0].id
+            order.skills.forEach(async skill => {
+                await pool.query(`insert into skills("name","orderId") values('${skill.name}',${id})`)
+            })
+        } catch (error) {
+            throw error
+        }
     }
     getOrderById = async (id) => {
         const ReceivedOrder = await (await pool.query(`select * from orders where id = ${id}`)).rows[0]

@@ -13,8 +13,12 @@ class Order {
 
     getOrder = async (req, res) => {
         const { id } = req.params
-        const ReceivedOrder = await OrderService.getOrderById(id)
-        res.send(ReceivedOrder)
+        try {
+            const ReceivedOrder = await OrderService.getOrderById(id)
+            res.send(ReceivedOrder)
+        } catch (error) {
+            res.status(500).send(error)
+        }
     }
 }
 

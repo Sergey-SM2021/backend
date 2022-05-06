@@ -11,6 +11,7 @@ client.get("/:id", ClientController.getClient)
 client.put("/update/:id", ClientController.putClient)
 
 client.post("/createOrder", ClientController.createOrder)
+// удалить ордер нужно добовлять через ордер
 
 client.get("/orders/:count/:userId", ClientController.getOrders)
 
