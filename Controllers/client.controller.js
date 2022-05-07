@@ -33,27 +33,6 @@ class Client {
             res.status(500).send("err")
         }
     }
-
-    createOrder = async (req, res) => {
-        try {
-            const { description, price, skills, sphereOfActivity, title, feedbacks, clientId, views } = req.body
-            await pool.query(`insert into orders ("title","price","description","sphereOfActivity","views","clientId") values ('${title}','${price}','${description}','${sphereOfActivity}','${views}','${clientId}')`)
-            res.send("responce")
-        } catch (error) {
-            res.status(500).send("Не удалось создать пользовотеля")
-        }
-    }
-
-    getOrder = async (req, res) => {
-        const { id } = req.params
-        try {
-            const order = await (await pool.query(`select * from orders where id = ${id}`)).rows[0]
-            order.feedbacks = []
-            res.send(order)
-        } catch (error) {
-            res.status(500).send("err")
-        }
-    }
 }
 
 export const ClientController = new Client()

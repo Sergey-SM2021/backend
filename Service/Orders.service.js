@@ -10,6 +10,9 @@ class Orders {
         }))
         return finallyOrders
     }
+    getClientOrders = async (userId, count) => {
+        return await (await pool.query(`select * from orders where "clientId" = ${userId} order by "id" desC limit ${count}`)).rows
+    }
 }
 
 export const OrdersService = new Orders()

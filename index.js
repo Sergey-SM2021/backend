@@ -1,6 +1,7 @@
 import express from "express"
 import cors from 'cors'
 import { json } from "express"
+
 import { client } from "./Router/client.router.js"
 import { freelancer } from "./Router/freelancer.router.js"
 import { user } from "./Router/user.router.js"
@@ -21,6 +22,8 @@ server.use('/orders', ordersRouter)
 server.use('/order', OrderRouter)
 
 // server.listen(80)
-server.listen(8900)
+server.listen(8900,()=>{
+    console.log("Сервер успешно запущен")
+})
 
 // #TODO: work history mast return skills

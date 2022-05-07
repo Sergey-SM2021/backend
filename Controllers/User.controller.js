@@ -12,6 +12,7 @@ class User {
             }
             res.send(USER)
         } catch (error) {
+            res.status(500).send(error)
         }
     }
     createUser = async (req, res) => {
