@@ -3,10 +3,10 @@ import { pool } from '../db.js'
 class Order {
     createOrder = async (order) => {
         try {
-            console.log("order");
             const id = await (await pool.query(`insert into orders("title","price","description","sphereOfActivity","clientId") 
-            values('${order.title}',${order.price},'${order.description}','${order.sphereOfActivity}',${order.clientId}) RETURNING id`)).rows[0].id
+            values('${order.title}',${order.price},$$${order.description}$$,'${order.sphereOfActivity}',${order.clientId}) RETURNING id`)).rows[0].id
             order.skills.forEach(async skill => {
+                console.log(skill);
                 await pool.query(`insert into skills("name","orderId") values('${skill.name}',${id})`)
             })
         } catch (error) {

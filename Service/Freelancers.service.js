@@ -17,7 +17,7 @@ class Freelancers {
     }
     getSortedFreelancersByName = async (name) => {
             try {
-                const freelancers = await (await pool.query(`select * from freelancers where name = '${name}'`))
+                const freelancers = await (await pool.query(`select * from freelancers ORDER BY "name" = '${name}' desc`))
                 const newArr = await this.ConvertFreelancers(freelancers)
                 return (await newArr)
             } catch (error) {
