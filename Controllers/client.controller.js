@@ -44,16 +44,6 @@ class Client {
         }
     }
 
-    getOrders = async (req, res) => {
-        try {
-            const { userId, count } = req.params
-            let orders = await (await pool.query(`select * from orders where "clientId" = ${userId} order by id desC limit ${count}`)).rows
-            res.send(orders)
-        } catch (error) {
-            res.status(500).send("err")
-        }
-    }
-
     getOrder = async (req, res) => {
         const { id } = req.params
         try {
